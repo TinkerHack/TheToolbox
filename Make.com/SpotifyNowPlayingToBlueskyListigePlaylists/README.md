@@ -86,10 +86,25 @@ So setting it to run every 4 hours or more will keep you within free limits.
    - Click "Add" → "Connect to Spotify"
    - Log in to your Spotify account and authorize Make.com
 
+### Step 2: Connect Your Accounts
+1. **Spotify Connection:**
+   - Click the Spotify module
+   - Click "Add" → "Connect to Spotify"
+   - Log in to your Spotify account and authorize Make.com
+
 2. **Bluesky Connection:**
    - Click the Bluesky module
    - Click "Add" → "Connect to Bluesky"
-   - Log in to your Bluesky account and authorize Make.com
+   
+   > 💡 **Security Tip:** We recommend creating a dedicated app password for this integration instead of using your main Bluesky password:
+   > 1. Go to [Bluesky Settings](https://bsky.app/settings)
+   > 2. Select "Privacy & Security"
+   > 3. Click "App Passwords"
+   > 4. Create a new password (e.g., "Make.com Integration")
+   > 5. Use this generated password when connecting Make.com to Bluesky
+   
+   - Log in to your Bluesky account using the app password
+   - Authorize Make.com to access your account
 
 ### Step 3: Set Your Schedule
 1. Click the clock icon at the top of your scenario

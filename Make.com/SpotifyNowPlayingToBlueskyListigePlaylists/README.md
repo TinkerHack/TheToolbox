@@ -96,7 +96,7 @@ So setting it to run every 4 hours or more will keep you within free limits.
    - Click the Bluesky module
    - Click "Add" → "Connect to Bluesky"
    
-   > 💡 **Security Tip:** We recommend creating a dedicated app password for this integration instead of using your main Bluesky password:
+   > 💡 **Security Tip:** Recommend creating a dedicated app password for this integration instead of using your main Bluesky password:
    > 1. Go to [Bluesky Settings](https://bsky.app/settings)
    > 2. Select "Privacy & Security"
    > 3. Click "App Passwords"

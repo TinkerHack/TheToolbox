@@ -68,7 +68,7 @@ So setting it to run every 4 hours or more will keep you within free limits.
 ## Setup Instructions
 
 ### Step 1: Import the Blueprint
-1. [Download the blueprint file](Spotify%20Now%20Playing%20to%20Bluesky%20ListigePlaylists.blueprint%20-%20Copy.json.txt)
+1. [Download the blueprint file](https://github.com/TinkerHack/TheToolbox/blob/main/Make.com/SpotifyNowPlayingToBlueskyListigePlaylists/Spotify%20Now%20Playing%20to%20Bluesky%20ListigePlaylists.blueprint.json)
 2. Go to [Make.com](https://make.com) and create a free account
 3. Click "Create a new scenario" → "Import blueprint" → Upload the downloaded file
 

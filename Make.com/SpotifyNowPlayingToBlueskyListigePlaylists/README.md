@@ -15,6 +15,8 @@ Every time you play a new track on Spotify, this automation will:
    - Link to the track on Spotify
    - A mention to @listigeplaylists.bsky.social
 
+![Make.com Flow Diagram](images/post-example.png)
+
 ## How It Works
 
 Here's a visual representation of the automation flow:

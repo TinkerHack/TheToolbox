@@ -15,6 +15,12 @@ Every time you play a new track on Spotify, this automation will:
    - Link to the track on Spotify
    - A mention to @listigeplaylists.bsky.social
 
+## How It Works
+
+Here's a visual representation of the automation flow:
+
+![Make.com Flow Diagram](images/make-flow.png)
+
 ## Make.com Free Plan Information
 
 This blueprint works with Make.com's free plan! Here's what you need to know:

@@ -22,7 +22,7 @@
                                 "scoped": "true",
                                 "connection": "spotify"
                             },
-                            "label": "My Spotify connection (christi1an)"
+                            "label": "My Spotify connection"
                         }
                     }
                 },
@@ -102,11 +102,11 @@
             "module": "bluesky:uploadMedia",
             "version": 1,
             "parameters": {
-                "__IMTCONN__": 11548209
+                "__IMTCONN__": 11890810
             },
             "mapper": {
-                "data": "{{9.data}}",
-                "filename": "{{9.fileName}}"
+                "filename": "{{9.fileName}}",
+                "data": "{{9.data}}"
             },
             "metadata": {
                 "designer": {
@@ -116,11 +116,11 @@
                 "restore": {
                     "parameters": {
                         "__IMTCONN__": {
+                            "label": "My Bluesky connection",
                             "data": {
                                 "scoped": "true",
                                 "connection": "bluesky"
-                            },
-                            "label": "My Bluesky connection (listigeplaylists.bsky.social)"
+                            }
                         }
                     }
                 },
@@ -133,6 +133,18 @@
                     }
                 ],
                 "expect": [
+                    {
+                        "name": "filename",
+                        "type": "filename",
+                        "label": "File name",
+                        "required": true
+                    },
+                    {
+                        "name": "data",
+                        "type": "buffer",
+                        "label": "Data",
+                        "required": true
+                    },
                     {
                         "name": "filename",
                         "type": "filename",
@@ -157,46 +169,46 @@
                 "space": ""
             },
             "mapper": {
-                "repo": "listigeplaylists.bsky.social",
+                "collection": "app.bsky.feed.post",
+                "repo": "[REPLACE WITH YOUR HANDLE HERE].bsky.social",
                 "record": {
                     "text": "🎧 Listening to this now and posting it to @listigeplaylists.bsky.social for playlisting! 🎵",
                     "$type": "app.bsky.feed.post",
+                    "createdAt": "{{now}}",
                     "embed": {
                         "$type": "app.bsky.embed.external",
                         "external": {
                             "uri": "{{1.track.external_urls.spotify}}",
+                            "title": "{{1.track.name}}",
+                            "description": "{{join(map(1.track.artists; \"name\"); \", \")}}",
                             "thumb": {
+                                "$type": "blob",
                                 "ref": {
                                     "$link": "{{10.blob.ref.`$link`}}"
                                 },
-                                "size": "{{10.blob.size}}",
-                                "$type": "blob",
-                                "mimeType": "{{10.blob.mimeType}}"
-                            },
-                            "title": "{{1.track.name}}",
-                            "description": "{{join(map(1.track.artists; \"name\"); \", \")}}"
+                                "mimeType": "{{10.blob.mimeType}}",
+                                "size": "{{10.blob.size}}"
+                            }
                         }
                     },
-                    "langs": [
-                        "en"
-                    ],
                     "facets": [
                         {
                             "index": {
-                                "byteEnd": "74",
-                                "byteStart": "45"
+                                "byteStart": "45",
+                                "byteEnd": "74"
                             },
                             "features": [
                                 {
-                                    "did": "did:plc:w524f2zdqikl6g7gw2n46hea",
-                                    "$type": "app.bsky.richtext.facet#mention"
+                                    "$type": "app.bsky.richtext.facet#mention",
+                                    "did": "did:plc:w524f2zdqikl6g7gw2n46hea"
                                 }
                             ]
                         }
                     ],
-                    "createdAt": "{{now}}"
-                },
-                "collection": "app.bsky.feed.post"
+                    "langs": [
+                        "en"
+                    ]
+                }
             },
             "metadata": {
                 "designer": {
@@ -204,15 +216,17 @@
                     "y": -71
                 },
                 "restore": {
+                    "parameters": {
+                        "type": {
+                            "label": "My data structure"
+                        },
+                        "space": {
+                            "label": "Empty"
+                        }
+                    },
                     "expect": {
                         "record": {
                             "nested": {
-                                "langs": {
-                                    "mode": "chose",
-                                    "items": [
-                                        null
-                                    ]
-                                },
                                 "facets": {
                                     "mode": "chose",
                                     "items": [
@@ -225,16 +239,14 @@
                                             }
                                         }
                                     ]
+                                },
+                                "langs": {
+                                    "mode": "chose",
+                                    "items": [
+                                        null
+                                    ]
                                 }
                             }
-                        }
-                    },
-                    "parameters": {
-                        "type": {
-                            "label": "My data structure"
-                        },
-                        "space": {
-                            "label": "Empty"
                         }
                     }
                 },
@@ -271,6 +283,8 @@
                     },
                     {
                         "name": "record",
+                        "type": "collection",
+                        "label": "Record",
                         "spec": [
                             {
                                 "name": "text",
@@ -288,6 +302,8 @@
                             },
                             {
                                 "name": "embed",
+                                "type": "collection",
+                                "label": "Embed",
                                 "spec": [
                                     {
                                         "name": "$type",
@@ -295,6 +311,8 @@
                                     },
                                     {
                                         "name": "external",
+                                        "type": "collection",
+                                        "label": "External",
                                         "spec": [
                                             {
                                                 "name": "uri",
@@ -313,6 +331,8 @@
                                             },
                                             {
                                                 "name": "thumb",
+                                                "type": "collection",
+                                                "label": "Thumb",
                                                 "spec": [
                                                     {
                                                         "name": "$type",
@@ -320,14 +340,14 @@
                                                     },
                                                     {
                                                         "name": "ref",
+                                                        "type": "collection",
+                                                        "label": "Ref",
                                                         "spec": [
                                                             {
                                                                 "name": "$link",
                                                                 "type": "text"
                                                             }
-                                                        ],
-                                                        "type": "collection",
-                                                        "label": "Ref"
+                                                        ]
                                                     },
                                                     {
                                                         "name": "mimeType",
@@ -339,78 +359,70 @@
                                                         "type": "number",
                                                         "label": "Size"
                                                     }
-                                                ],
-                                                "type": "collection",
-                                                "label": "Thumb"
+                                                ]
                                             }
-                                        ],
-                                        "type": "collection",
-                                        "label": "External"
+                                        ]
                                     }
-                                ],
-                                "type": "collection",
-                                "label": "Embed"
+                                ]
                             },
                             {
                                 "name": "facets",
+                                "type": "array",
+                                "label": "Facets",
                                 "spec": {
-                                    "name": "value",
+                                    "type": "collection",
                                     "spec": [
                                         {
                                             "name": "index",
+                                            "label": null,
+                                            "type": "collection",
                                             "spec": [
                                                 {
                                                     "name": "byteStart",
-                                                    "type": "number",
-                                                    "label": null
+                                                    "label": null,
+                                                    "type": "number"
                                                 },
                                                 {
                                                     "name": "byteEnd",
-                                                    "type": "number",
-                                                    "label": null
+                                                    "label": null,
+                                                    "type": "number"
                                                 }
-                                            ],
-                                            "type": "collection",
-                                            "label": null
+                                            ]
                                         },
                                         {
                                             "name": "features",
+                                            "label": null,
+                                            "type": "array",
                                             "spec": {
+                                                "type": "collection",
                                                 "spec": [
                                                     {
                                                         "name": "$type",
-                                                        "type": "text",
-                                                        "label": null
+                                                        "label": null,
+                                                        "type": "text"
                                                     },
                                                     {
                                                         "name": "did",
-                                                        "type": "text",
-                                                        "label": null
+                                                        "label": null,
+                                                        "type": "text"
                                                     }
-                                                ],
-                                                "type": "collection"
-                                            },
-                                            "type": "array",
-                                            "label": null
+                                                ]
+                                            }
                                         }
                                     ],
-                                    "type": "collection"
-                                },
-                                "type": "array",
-                                "label": "Facets"
+                                    "name": "value"
+                                }
                             },
                             {
                                 "name": "langs",
-                                "spec": {
-                                    "name": "value",
-                                    "type": "text"
-                                },
                                 "type": "array",
-                                "label": "Langs"
+                                "label": "Langs",
+                                "spec": {
+                                    "type": "text",
+                                    "name": "value"
+                                }
                             }
-                        ],
-                        "type": "collection",
-                        "label": "Record"
+                        ]
                     }
                 ]
             }
@@ -420,18 +432,18 @@
             "module": "bluesky:makeAnApiCall",
             "version": 1,
             "parameters": {
-                "__IMTCONN__": 11548209
+                "__IMTCONN__": 11890810
             },
             "mapper": {
                 "url": "/xrpc/com.atproto.repo.createRecord",
-                "body": "{{11.json}}",
                 "method": "POST",
                 "headers": [
                     {
                         "key": "Content-Type",
                         "value": "application/json"
                     }
-                ]
+                ],
+                "body": "{{11.json}}"
             },
             "metadata": {
                 "designer": {
@@ -439,10 +451,16 @@
                     "y": -73
                 },
                 "restore": {
+                    "parameters": {
+                        "__IMTCONN__": {
+                            "label": "My Bluesky connection",
+                            "data": {
+                                "scoped": "true",
+                                "connection": "bluesky"
+                            }
+                        }
+                    },
                     "expect": {
-                        "qs": {
-                            "mode": "chose"
-                        },
                         "method": {
                             "mode": "chose",
                             "label": "POST"
@@ -452,15 +470,9 @@
                             "items": [
                                 null
                             ]
-                        }
-                    },
-                    "parameters": {
-                        "__IMTCONN__": {
-                            "data": {
-                                "scoped": "true",
-                                "connection": "bluesky"
-                            },
-                            "label": "My Bluesky connection (listigeplaylists.bsky.social)"
+                        },
+                        "qs": {
+                            "mode": "chose"
                         }
                     }
                 },
@@ -496,8 +508,9 @@
                     },
                     {
                         "name": "headers",
+                        "type": "array",
+                        "label": "Headers",
                         "spec": {
-                            "name": "value",
                             "spec": [
                                 {
                                     "name": "key",
@@ -511,15 +524,15 @@
                                 }
                             ],
                             "type": "collection",
-                            "label": "Header"
-                        },
-                        "type": "array",
-                        "label": "Headers"
+                            "label": "Header",
+                            "name": "value"
+                        }
                     },
                     {
                         "name": "qs",
+                        "type": "array",
+                        "label": "Query String",
                         "spec": {
-                            "name": "value",
                             "spec": [
                                 {
                                     "name": "key",
@@ -533,10 +546,9 @@
                                 }
                             ],
                             "type": "collection",
-                            "label": "Parameter"
-                        },
-                        "type": "array",
-                        "label": "Query String"
+                            "label": "Parameter",
+                            "name": "value"
+                        }
                     },
                     {
                         "name": "body",

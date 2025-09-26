@@ -18,8 +18,6 @@ Every time you play a new track on Spotify, this automation will:
 
 ## How It Works
 
-Here's a visual representation of the automation flow:
-
 You can see a live example of this automation running every four hours on our showcase profile: [TinkerHack on Bluesky](https://bsky.app/profile/tinkerhack.bsky.social).
 
 ## Make.com Free Plan Information

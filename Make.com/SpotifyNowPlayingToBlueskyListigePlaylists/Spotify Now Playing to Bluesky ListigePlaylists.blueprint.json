@@ -105,8 +105,8 @@
                 "__IMTCONN__": 11890810
             },
             "mapper": {
-                "filename": "{{9.fileName}}",
-                "data": "{{9.data}}"
+                "data": "{{9.data}}",
+                "filename": "{{9.fileName}}"
             },
             "metadata": {
                 "designer": {
@@ -116,11 +116,11 @@
                 "restore": {
                     "parameters": {
                         "__IMTCONN__": {
-                            "label": "My Bluesky connection",
                             "data": {
                                 "scoped": "true",
                                 "connection": "bluesky"
-                            }
+                            },
+                            "label": "My Bluesky connectio"
                         }
                     }
                 },
@@ -170,9 +170,9 @@
             },
             "mapper": {
                 "collection": "app.bsky.feed.post",
-                "repo": "[REPLACE WITH YOUR HANDLE HERE].bsky.social",
+                "repo": "[REPLACE WITH YOUR HANDLE HERE].bsky.social.bsky.social",
                 "record": {
-                    "text": "🎧 Listening to this now and posting it to @listigeplaylists.bsky.social for playlisting! 🎵",
+                    "text": "🎧 Recently listened to this track!\r\n\r\nNow posting it to @listigeplaylists.bsky.social for playlisting 🎵",
                     "$type": "app.bsky.feed.post",
                     "createdAt": "{{now}}",
                     "embed": {
@@ -194,8 +194,8 @@
                     "facets": [
                         {
                             "index": {
-                                "byteStart": "45",
-                                "byteEnd": "74"
+                                "byteStart": "59",
+                                "byteEnd": "88"
                             },
                             "features": [
                                 {
@@ -436,14 +436,14 @@
             },
             "mapper": {
                 "url": "/xrpc/com.atproto.repo.createRecord",
+                "body": "{{11.json}}",
                 "method": "POST",
                 "headers": [
                     {
                         "key": "Content-Type",
                         "value": "application/json"
                     }
-                ],
-                "body": "{{11.json}}"
+                ]
             },
             "metadata": {
                 "designer": {
@@ -451,16 +451,10 @@
                     "y": -73
                 },
                 "restore": {
-                    "parameters": {
-                        "__IMTCONN__": {
-                            "label": "My Bluesky connection",
-                            "data": {
-                                "scoped": "true",
-                                "connection": "bluesky"
-                            }
-                        }
-                    },
                     "expect": {
+                        "qs": {
+                            "mode": "chose"
+                        },
                         "method": {
                             "mode": "chose",
                             "label": "POST"
@@ -470,9 +464,15 @@
                             "items": [
                                 null
                             ]
-                        },
-                        "qs": {
-                            "mode": "chose"
+                        }
+                    },
+                    "parameters": {
+                        "__IMTCONN__": {
+                            "data": {
+                                "scoped": "true",
+                                "connection": "bluesky"
+                            },
+                            "label": "My Bluesky connection"
                         }
                     }
                 },
@@ -508,9 +508,8 @@
                     },
                     {
                         "name": "headers",
-                        "type": "array",
-                        "label": "Headers",
                         "spec": {
+                            "name": "value",
                             "spec": [
                                 {
                                     "name": "key",
@@ -524,15 +523,15 @@
                                 }
                             ],
                             "type": "collection",
-                            "label": "Header",
-                            "name": "value"
-                        }
+                            "label": "Header"
+                        },
+                        "type": "array",
+                        "label": "Headers"
                     },
                     {
                         "name": "qs",
-                        "type": "array",
-                        "label": "Query String",
                         "spec": {
+                            "name": "value",
                             "spec": [
                                 {
                                     "name": "key",
@@ -546,9 +545,10 @@
                                 }
                             ],
                             "type": "collection",
-                            "label": "Parameter",
-                            "name": "value"
-                        }
+                            "label": "Parameter"
+                        },
+                        "type": "array",
+                        "label": "Query String"
                     },
                     {
                         "name": "body",

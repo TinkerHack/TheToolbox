@@ -22,7 +22,7 @@
                                 "scoped": "true",
                                 "connection": "spotify"
                             },
-                            "label": "My Spotify connection (christi1an)"
+                            "label": "My Spotify connection"
                         }
                     }
                 },
@@ -43,7 +43,7 @@
             }
         },
         {
-            "id": 9,
+            "id": 2,
             "module": "http:ActionGetFile",
             "version": 3,
             "parameters": {
@@ -98,15 +98,15 @@
             }
         },
         {
-            "id": 10,
+            "id": 3,
             "module": "bluesky:uploadMedia",
             "version": 1,
             "parameters": {
-                "__IMTCONN__": 11548209
+                "__IMTCONN__": 11890810
             },
             "mapper": {
-                "data": "{{9.data}}",
-                "filename": "{{9.fileName}}"
+                "data": "{{2.data}}",
+                "filename": "{{2.fileName}}"
             },
             "metadata": {
                 "designer": {
@@ -120,7 +120,7 @@
                                 "scoped": "true",
                                 "connection": "bluesky"
                             },
-                            "label": "My Bluesky connection (listigeplaylists.bsky.social)"
+                            "label": "My Bluesky connection"
                         }
                     }
                 },
@@ -144,22 +144,34 @@
                         "type": "buffer",
                         "label": "Data",
                         "required": true
+                    },
+                    {
+                        "name": "filename",
+                        "type": "filename",
+                        "label": "File name",
+                        "required": true
+                    },
+                    {
+                        "name": "data",
+                        "type": "buffer",
+                        "label": "Data",
+                        "required": true
                     }
                 ]
             }
         },
         {
-            "id": 11,
+            "id": 4,
             "module": "json:CreateJSON",
             "version": 1,
             "parameters": {
-                "type": 428869,
+                "type": 444400,
                 "space": ""
             },
             "mapper": {
-                "repo": "listigeplaylists.bsky.social",
+                "repo": "[REPLACE WITH YOUR HANDLE HERE].bsky.social",
                 "record": {
-                    "text": "🎧 Listening to this now and posting it to @listigeplaylists.bsky.social for playlisting! 🎵",
+                    "text": "🎧 Recently listened to this track!\r\n\r\nNow posting it to @listigeplaylists.bsky.social for playlisting 🎵",
                     "$type": "app.bsky.feed.post",
                     "embed": {
                         "$type": "app.bsky.embed.external",
@@ -167,11 +179,11 @@
                             "uri": "{{1.track.external_urls.spotify}}",
                             "thumb": {
                                 "ref": {
-                                    "$link": "{{10.blob.ref.`$link`}}"
+                                    "$link": "{{3.blob.ref.`$link`}}"
                                 },
-                                "size": "{{10.blob.size}}",
+                                "size": "{{3.blob.size}}",
                                 "$type": "blob",
-                                "mimeType": "{{10.blob.mimeType}}"
+                                "mimeType": "{{3.blob.mimeType}}"
                             },
                             "title": "{{1.track.name}}",
                             "description": "{{join(map(1.track.artists; \"name\"); \", \")}}"
@@ -183,8 +195,8 @@
                     "facets": [
                         {
                             "index": {
-                                "byteEnd": "74",
-                                "byteStart": "45"
+                                "byteEnd": "88",
+                                "byteStart": "59"
                             },
                             "features": [
                                 {
@@ -231,7 +243,7 @@
                     },
                     "parameters": {
                         "type": {
-                            "label": "My data structure"
+                            "label": "Bluesky JSON Body"
                         },
                         "space": {
                             "label": "Empty"
@@ -416,15 +428,15 @@
             }
         },
         {
-            "id": 12,
+            "id": 5,
             "module": "bluesky:makeAnApiCall",
             "version": 1,
             "parameters": {
-                "__IMTCONN__": 11548209
+                "__IMTCONN__": 11890810
             },
             "mapper": {
                 "url": "/xrpc/com.atproto.repo.createRecord",
-                "body": "{{11.json}}",
+                "body": "{{4.json}}",
                 "method": "POST",
                 "headers": [
                     {
@@ -460,7 +472,7 @@
                                 "scoped": "true",
                                 "connection": "bluesky"
                             },
-                            "label": "My Bluesky connection (listigeplaylists.bsky.social)"
+                            "label": "My Bluesky connection"
                         }
                     }
                 },

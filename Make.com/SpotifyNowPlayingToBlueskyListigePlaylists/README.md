@@ -15,13 +15,9 @@ Every time you play a new track on Spotify, this automation will:
    - Link to the track on Spotify
    - A mention to @listigeplaylists.bsky.social
 
-![Make.com Flow Diagram](images/post-example.png)
-
 ## How It Works
 
-Here's a visual representation of the automation flow:
-
-![Make.com Flow Diagram](images/make-flow.png)
+Check out this Bluesky profile to see a live demo of the automation in action: **[@tinkerhack.bsky.social](https://bsky.app/profile/tinkerhack.bsky.social)**
 
 ## Make.com Free Plan Information
 
@@ -80,57 +76,149 @@ So setting it to run every 4 hours or more will keep you within free limits.
 2. Go to [Make.com](https://make.com) and create a free account
 3. Click "Create a new scenario" → "Import blueprint" → Upload the downloaded file
 
-### Step 2: Connect Your Accounts
-1. **Spotify Connection:**
-   - Click the Spotify module
-   - Click "Add" → "Connect to Spotify"
-   - Log in to your Spotify account and authorize Make.com
+### Step 2: Create Data Structure for Bluesky
+After importing, the fourth module, "Create JSON", will show an error. This is expected! We fix it with these steps:
 
-### Step 2: Connect Your Accounts
-1. **Spotify Connection:**
-   - Click the Spotify module
-   - Click "Add" → "Connect to Spotify"
-   - Log in to your Spotify account and authorize Make.com
+1.  Click on the fourth module with the JSON icon to open its settings.
 
-2. **Bluesky Connection:**
-   - Click the Bluesky module
-   - Click "Add" → "Connect to Bluesky"
-   
-   > 💡 **Security Tip:** Recommend creating a dedicated app password for this integration instead of using your main Bluesky password:
-   > 1. Go to [Bluesky Settings](https://bsky.app/settings)
-   > 2. Select "Privacy & Security"
-   > 3. Click "App Passwords"
-   > 4. Create a new password (e.g., "Make.com Integration")
-   > 5. Use this generated password when connecting Make.com to Bluesky
-   
-   - Log in to your Bluesky account using the app password
-   - Authorize Make.com to access your account
+![Make.com Flow Diagram](images/datastructure01.png)
 
-### Step 3: Set Your Schedule
-1. Click the clock icon at the top of your scenario
-2. Choose your preferred schedule:
-   - **Recommended for free plan:** Every 4 hours
-   - **For more active sharing:** Every 15 minutes (requires paid plan)
-   - **Custom:** Select "Custom" and set your desired interval
-3. Click "OK" to save
+2.  A popup will now appear. At the top, you'll see "Data structure". Click the **Add** button next to the field.
 
-### Step 4: Activate the Scenario
-1. Click the "On/Off" switch at the bottom right
-2. Confirm activation when prompted
+![Make.com Data structure](images/datastructure02.png)
 
-That's it! Your scenario will now automatically post your currently playing tracks to Bluesky according to your schedule.
+3.  A new "Add data structure" guide will open.
+    - In the **Data structure name** field, enter exactly `Bluesky JSON Body`.
+    - Then, click the **Generator** button under **Specification**.
+
+    ![Make.com Data structure name](images/datastructure03.png)
+
+4.  A final popup will appear. "Content type" should already be set to "JSON". Paste the entire code block below into the **Sample data** field.
+
+```json
+{
+    "collection": "app.bsky.feed.post",
+    "repo": "your-handle.bsky.social",
+    "record": {
+        "text": "My post text",
+        "$type": "app.bsky.feed.post",
+        "createdAt": "2024-01-01T12:00:00.000Z",
+        "embed": {
+            "$type": "app.bsky.embed.external",
+            "external": {
+                "uri": "[https://spotify.link](https://spotify.link)",
+                "title": "Song Title",
+                "description": "Artist Name",
+                "thumb": {
+                    "$type": "blob",
+                    "ref": {
+                        "$link": "link-to-blob"
+                    },
+                    "mimeType": "image/jpeg",
+                    "size": 10000
+                }
+            }
+        },
+        "facets": [
+            {
+                "index": {
+                    "byteStart": 59,
+                    "byteEnd": 88
+                },
+                "features": [
+                    {
+                        "$type": "app.bsky.richtext.facet#mention",
+                        "did": "did:plc:id"
+                    }
+                ]
+            }
+        ],
+        "langs": [
+            "en"
+        ]
+    }
+}
+````
+
+![Make.com Data structure name](images/datastructure04.png)
+
+5.  Click **Generate**. Make.com will now automatically build the structure.
+6.  Click **Save**, to save the ongoing **Add data structure** settings.
+7.  Click **Save**, to save the ongoing **JSON Module** settings.
+
+
+### Step 3: Configure the Bluesky Post
+
+This is a crucial step to ensure the post is made from your account.
+
+1.  In the scenario, click on the fourth module again (the one with a JSON icon, labeled "Create JSON").
+2.  In the `repo` field, replace the text `[REPLACE WITH YOUR HANDLE HERE].bsky.social` with your own Bluesky handle.
+      - **Example:** `yourname.bsky.social`.
+3.  Click "OK" to save the changes.
+
+### Step 4: Connect Your Accounts
+
+1.  **Spotify Connection:**
+
+      - Click the Spotify module
+      - Click "Add" → "Connect to Spotify"
+      - Log in to your Spotify account and authorize Make.com
+
+2.  **Bluesky Connection:**
+
+      - Click the Bluesky module
+      - Click "Add" → "Connect to Bluesky"
+
+    > 💡 **Security Tip:** Recommend creating a dedicated app password for this integration instead of using your main Bluesky password:
+
+    > 1.  Go to [Bluesky Settings](https://bsky.app/settings)
+    > 2.  Select "Privacy & Security"
+    > 3.  Click "App Passwords"
+    > 4.  Create a new password (e.g., "Make.com Integration")
+    > 5.  Use this generated password when connecting Make.com to Bluesky
+
+      - Log in to your Bluesky account using the app password
+      - Authorize Make.com to access your account
+
+### Step 5: Test Run (Optional but Recommended)
+
+Before you set the final schedule, it's a good idea to test the scenario to make sure everything is working correctly.
+
+1.  Make sure you are currently playing a song on Spotify for more than 30 seconds.
+2.  Click the **Run once** button in the bottom-left corner of the Make.com editor.
+3.  Check your Bluesky profile to see if the post was created successfully.
+
+If the post appears as expected, you're good to go! If not, please refer to the [Troubleshooting](#troubleshooting) section at the end of this guide for common issues.
+
+### Step 6: Set Your Schedule
+
+1.  Click the clock icon at the top of your scenario
+2.  Choose your preferred schedule:
+      - **Recommended for free plan:** Every 4 hours (240 minutes)
+      - **For more active sharing:** Every 15 minutes (requires paid plan)
+      - **Custom:** Select "Custom" and set your desired interval
+3.  Click "OK" to save
+
+### Step 7: Activate the Scenario
+
+1.  Click the "On/Off" switch at the bottom right
+2.  Confirm activation when prompted
+
+That's it\! Your scenario will now automatically post your currently playing tracks to Bluesky according to your schedule.
 
 ## Troubleshooting
 
-- **Scenario not running?** Make sure you've activated it and the schedule is set correctly.
-- **Missing posts?** The scenario only captures new tracks played after activation.
-- **Credits running low?** You can check your usage in Make.com under "Operations" in the left menu.
-- **Too many posts?** Increase the time between runs in your schedule settings.
+  - **Scenario not running?** Make sure you've activated it and the schedule is set correctly.
+  - **Posts are not appearing on my profile?** Double-check that you have correctly replaced the placeholder in the `repo` field with your own Bluesky handle in **Step 3**.
+  - **Missing posts?** The scenario only captures new tracks played after activation.
+  - **Credits running low?** You can check your usage in Make.com under "Operations" in the left menu.
+  - **Too many posts?** Increase the time between runs in your schedule settings.
 
 ## Need Help?
 
 If you run into any issues:
-1. Check Make.com's help documentation
-2. Reach out to [@listigeplaylists.bsky.social](https://bsky.app/profile/listigeplaylists.bsky.social) for community support
 
-Enjoy sharing your music journey with the Bluesky community! 🎵
+1.  Check Make.com's help documentation
+2.  Reach out to [@listigeplaylists.bsky.social](https://bsky.app/profile/listigeplaylists.bsky.social) for community support
+
+Enjoy sharing your music journey with the Bluesky community\! 🎵

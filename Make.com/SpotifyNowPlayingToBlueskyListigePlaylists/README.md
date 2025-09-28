@@ -28,40 +28,6 @@ This blueprint works with Make.com's free plan\! Here's what you need to know:
   - **This scenario uses:** 5 operations per run
   - **Maximum runs per month:** 200 runs (1,000 ÷ 5)
 
-## Scheduling Options
-
-The blueprint schedule is preset to run **every 4 hours**. With this setting, you should be able to post for the entire month using the 1000 free credits you receive. If you want to post more frequently, you can simply change the interval, but be aware that your free credits will run out before they are renewed.
-
-### Option 1: Conservative Schedule (Recommended and Preset for Free Plan)
-
-**Run every 4 hours**
-
-  - **Runs per day:** 6 (24 hours ÷ 4 hours)
-  - **Runs per month:** \~180 (6 × 30 days)
-  - **Operations used:** \~900 (180 × 5)
-  - **Remaining buffer:** 100 operations
-
-This schedule ensures you stay well within free plan limits while still capturing your listening activity throughout the day. It's also less "spammy" on Bluesky, giving your followers a nice overview of your music taste without overwhelming them.
-
-### Option 2: Frequent Schedule (For More Active Sharing)
-
-**Run every 15 minutes**
-
-  - **Runs per day:** 96 (24 hours × 60 minutes ÷ 15 minutes)
-  - **Runs per month:** \~2,880 (96 × 30 days)
-  - **Operations required:** \~14,400 (2,880 × 5)
-
-⚠️ **Important:** This option would exceed the free plan limits within the first day\! To use this schedule, you would need a paid Make.com plan.
-
-### Customizing Your Schedule
-
-You can set any schedule that works for you\! Here's how to calculate your usage:
-
-**Formula:**
-Operations per month = (24 ÷ hours between runs) × 30 days × 5 operations.
-
-To stay within the free plan (1,000 operations), the minimum time between runs should be 3.6 hours. Setting it to run every 4 hours or more will keep you within free limits.
-
 ## Setup Instructions
 
 ### Step 1: Import the Blueprint
@@ -217,3 +183,37 @@ If you run into any issues:
 2.  Reach out to [@listigeplaylists.bsky.social](https://bsky.app/profile/listigeplaylists.bsky.social) for community support
 
 Enjoy sharing your music journey with the Bluesky community\! 🎵
+
+## Scheduling Details
+
+The blueprint schedule is preset to run **every 4 hours**. With this setting, you should be able to post for the entire month using the 1000 free credits you receive. If you want to post more frequently, you can simply change the interval, but be aware that your free credits will run out before they are renewed.
+
+### Option 1: Conservative Schedule (Recommended and Preset for Free Plan)
+
+**Run every 4 hours**
+
+  - **Runs per day:** 6 (24 hours ÷ 4 hours)
+  - **Runs per month:** \~180 (6 × 30 days)
+  - **Operations used:** \~900 (180 × 5)
+  - **Remaining buffer:** 100 operations
+
+This schedule ensures you stay well within free plan limits while still capturing your listening activity throughout the day. It's also less "spammy" on Bluesky, giving your followers a nice overview of your music taste without overwhelming them.
+
+### Option 2: Frequent Schedule (For More Active Sharing)
+
+**Run every 15 minutes**
+
+  - **Runs per day:** 96 (24 hours × 60 minutes ÷ 15 minutes)
+  - **Runs per month:** \~2,880 (96 × 30 days)
+  - **Operations required:** \~14,400 (2,880 × 5)
+
+⚠️ **Important:** This option would exceed the free plan limits within the first day\! To use this schedule, you would need a paid Make.com plan.
+
+### Customizing Your Schedule
+
+You can set any schedule that works for you\! Here's how to calculate your usage:
+
+**Formula:**
+Operations per month = (24 ÷ hours between runs) × 30 days × 5 operations.
+
+To stay within the free plan (1,000 operations), the minimum time between runs should be 3.6 hours. Setting it to run every 4 hours or more will keep you within free limits.

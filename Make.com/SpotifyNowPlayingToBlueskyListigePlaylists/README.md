@@ -1,80 +1,74 @@
 # Spotify Now Playing to Bluesky for ListigePlaylists
 
-This Make.com blueprint automatically shares your currently playing Spotify track to Bluesky, making it easy to contribute to the [@listigeplaylists.bsky.social](https://bsky.app/profile/listigeplaylists.bsky.social) curated playlist!
+This Make.com blueprint automatically shares your currently playing Spotify track to Bluesky, making it easy to contribute to the [@listigeplaylists.bsky.social](https://bsky.app/profile/listigeplaylists.bsky.social) curated playlist\!
 
 Perfect for music lovers who want to share their listening habits and contribute to the community playlist without any manual effort.
 
 ## What This Does
 
 Every time you play a new track on Spotify, this automation will:
-1. Detect your currently playing song
-2. Download the album artwork
-3. Create a beautiful Bluesky post with:
-   - Song title and artist name
-   - Album artwork
-   - Link to the track on Spotify
-   - A mention to @listigeplaylists.bsky.social
+
+1.  Detect your currently playing song
+2.  Download the album artwork
+3.  Create a beautiful Bluesky post with:
+      - Song title and artist name
+      - Album artwork
+      - Link to the track on Spotify
+      - A mention to @listigeplaylists.bsky.social
 
 ## How It Works
 
-Check out this Bluesky profile to see a live demo of the automation in action: **[@tinkerhack.bsky.social](https://bsky.app/profile/tinkerhack.bsky.social)**
+You can see a live example of this automation running every four hours on our showcase profile: [TinkerHack on Bluesky](https://bsky.app/profile/tinkerhack.bsky.social).
 
 ## Make.com Free Plan Information
 
-This blueprint works with Make.com's free plan! Here's what you need to know:
+This blueprint works with Make.com's free plan\! Here's what you need to know:
 
-- **Free plan gives you:** 1,000 operations per month
-- **This scenario uses:** 5 operations per run
-- **Maximum runs per month:** 200 runs (1,000 ÷ 5)
+  - **Free plan gives you:** 1,000 operations per month
+  - **This scenario uses:** 5 operations per run
+  - **Maximum runs per month:** 200 runs (1,000 ÷ 5)
 
 ## Scheduling Options
 
-You can choose how frequently this automation runs based on your needs and Make.com plan. Here are two common configurations:
+The blueprint schedule is preset to run **every 4 hours**. With this setting, you should be able to post for the entire month using the 1000 free credits you receive. If you want to post more frequently, you can simply change the interval, but be aware that your free credits will run out before they are renewed.
 
-### Option 1: Conservative Schedule (Recommended for Free Plan)
+### Option 1: Conservative Schedule (Recommended and Preset for Free Plan)
+
 **Run every 4 hours**
-- **Runs per day:** 6 (24 hours ÷ 4 hours)
-- **Runs per month:** ~180 (6 × 30 days)
-- **Operations used:** ~900 (180 × 5)
-- **Remaining buffer:** 100 operations
+
+  - **Runs per day:** 6 (24 hours ÷ 4 hours)
+  - **Runs per month:** \~180 (6 × 30 days)
+  - **Operations used:** \~900 (180 × 5)
+  - **Remaining buffer:** 100 operations
 
 This schedule ensures you stay well within free plan limits while still capturing your listening activity throughout the day. It's also less "spammy" on Bluesky, giving your followers a nice overview of your music taste without overwhelming them.
 
 ### Option 2: Frequent Schedule (For More Active Sharing)
+
 **Run every 15 minutes**
-- **Runs per day:** 96 (24 hours × 60 minutes ÷ 15 minutes)
-- **Runs per month:** ~2,880 (96 × 30 days)
-- **Operations required:** ~14,400 (2,880 × 5)
 
-⚠️ **Important:** This option would exceed the free plan limits within the first day! To use this schedule, you would need:
-- A paid Make.com plan (starting at $9/month for 10,000 operations)
-- Or to manually turn the scenario on/off when you want to share music
+  - **Runs per day:** 96 (24 hours × 60 minutes ÷ 15 minutes)
+  - **Runs per month:** \~2,880 (96 × 30 days)
+  - **Operations required:** \~14,400 (2,880 × 5)
 
-This schedule captures almost everything you listen to in real-time, making it ideal for heavy music listeners who want to share their activity as it happens.
+⚠️ **Important:** This option would exceed the free plan limits within the first day\! To use this schedule, you would need a paid Make.com plan.
 
 ### Customizing Your Schedule
 
-You can set any schedule that works for you! Here's how to calculate your usage:
+You can set any schedule that works for you\! Here's how to calculate your usage:
 
 **Formula:**
 Operations per month = (24 ÷ hours between runs) × 30 days × 5 operations.
 
-**Example calculations:**
-- Every 30 minutes: (24 ÷ 0.5) × 30 × 5 = 7,200 operations/month
-- Every 2 hours: (24 ÷ 2) × 30 × 5 = 1,800 operations/month
-- Every 6 hours: (24 ÷ 6) × 30 × 5 = 600 operations/month
-
-To stay within the free plan (1,000 operations), the minimum time between runs should be:
-Minimum hours = (24 × 30 × 5) ÷ 1,000 = 3.6 hours
-
-So setting it to run every 4 hours or more will keep you within free limits.
+To stay within the free plan (1,000 operations), the minimum time between runs should be 3.6 hours. Setting it to run every 4 hours or more will keep you within free limits.
 
 ## Setup Instructions
 
 ### Step 1: Import the Blueprint
-1. [Download the blueprint file](https://github.com/TinkerHack/TheToolbox/blob/main/Make.com/SpotifyNowPlayingToBlueskyListigePlaylists/Spotify%20Now%20Playing%20to%20Bluesky%20ListigePlaylists.blueprint.json)
-2. Go to [Make.com](https://make.com) and create a free account
-3. Click "Create a new scenario" → "Import blueprint" → Upload the downloaded file
+
+1.  [Download the blueprint file](https://github.com/TinkerHack/TheToolbox/blob/main/Make.com/SpotifyNowPlayingToBlueskyListigePlaylists/Spotify%20Now%20Playing%20to%20Bluesky%20ListigePlaylists.blueprint.json)
+2.  Go to [Make.com](https://make.com) and create a free account
+3.  Click "Create a new scenario" → "Import blueprint" → Upload the downloaded file
 
 ### Step 2: Create Data Structure for Bluesky
 After importing, the fourth module, "Create JSON", will show an error. This is expected! We fix it with these steps:
@@ -204,6 +198,7 @@ If the post appears as expected, you're good to go! If not, please refer to the 
 1.  Click the "On/Off" switch at the bottom right
 2.  Confirm activation when prompted
 
+That's it\! Your scenario will now automatically post your currently playing tracks to Bluesky according to your schedule.
 That's it\! Your scenario will now automatically post your currently playing tracks to Bluesky according to your schedule.
 
 ## Troubleshooting

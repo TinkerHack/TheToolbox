@@ -23,6 +23,7 @@
                                 "connection": "spotify"
                             },
                             "label": "My Spotify connection"
+                            "label": "My Spotify connection"
                         }
                     }
                 },
@@ -103,6 +104,7 @@
             "version": 1,
             "parameters": {
                 "__IMTCONN__": 11890810
+                "__IMTCONN__": 11890810
             },
             "mapper": {
                 "data": "{{2.data}}",
@@ -156,6 +158,18 @@
                         "type": "buffer",
                         "label": "Data",
                         "required": true
+                    },
+                    {
+                        "name": "filename",
+                        "type": "filename",
+                        "label": "File name",
+                        "required": true
+                    },
+                    {
+                        "name": "data",
+                        "type": "buffer",
+                        "label": "Data",
+                        "required": true
                     }
                 ]
             }
@@ -172,12 +186,17 @@
                 "repo": "[REPLACE WITH YOUR HANDLE HERE].bsky.social",
                 "record": {
                     "text": "🎧 Recently listened to this track!\r\n\r\nNow posting it to @listigeplaylists.bsky.social for playlisting 🎵",
+                    "text": "🎧 Recently listened to this track!\r\n\r\nNow posting it to @listigeplaylists.bsky.social for playlisting 🎵",
                     "$type": "app.bsky.feed.post",
+                    "createdAt": "{{now}}",
                     "embed": {
                         "$type": "app.bsky.embed.external",
                         "external": {
                             "uri": "{{1.track.external_urls.spotify}}",
+                            "title": "{{1.track.name}}",
+                            "description": "{{join(map(1.track.artists; \"name\"); \", \")}}",
                             "thumb": {
+                                "$type": "blob",
                                 "ref": {
                                     "$link": "{{3.blob.ref.`$link`}}"
                                 },
@@ -189,9 +208,6 @@
                             "description": "{{join(map(1.track.artists; \"name\"); \", \")}}"
                         }
                     },
-                    "langs": [
-                        "en"
-                    ],
                     "facets": [
                         {
                             "index": {
@@ -200,15 +216,16 @@
                             },
                             "features": [
                                 {
-                                    "did": "did:plc:w524f2zdqikl6g7gw2n46hea",
-                                    "$type": "app.bsky.richtext.facet#mention"
+                                    "$type": "app.bsky.richtext.facet#mention",
+                                    "did": "did:plc:w524f2zdqikl6g7gw2n46hea"
                                 }
                             ]
                         }
                     ],
-                    "createdAt": "{{now}}"
-                },
-                "collection": "app.bsky.feed.post"
+                    "langs": [
+                        "en"
+                    ]
+                }
             },
             "metadata": {
                 "designer": {
@@ -216,15 +233,17 @@
                     "y": -71
                 },
                 "restore": {
+                    "parameters": {
+                        "type": {
+                            "label": "My data structure"
+                        },
+                        "space": {
+                            "label": "Empty"
+                        }
+                    },
                     "expect": {
                         "record": {
                             "nested": {
-                                "langs": {
-                                    "mode": "chose",
-                                    "items": [
-                                        null
-                                    ]
-                                },
                                 "facets": {
                                     "mode": "chose",
                                     "items": [
@@ -283,6 +302,8 @@
                     },
                     {
                         "name": "record",
+                        "type": "collection",
+                        "label": "Record",
                         "spec": [
                             {
                                 "name": "text",
@@ -300,6 +321,8 @@
                             },
                             {
                                 "name": "embed",
+                                "type": "collection",
+                                "label": "Embed",
                                 "spec": [
                                     {
                                         "name": "$type",
@@ -307,6 +330,8 @@
                                     },
                                     {
                                         "name": "external",
+                                        "type": "collection",
+                                        "label": "External",
                                         "spec": [
                                             {
                                                 "name": "uri",
@@ -325,6 +350,8 @@
                                             },
                                             {
                                                 "name": "thumb",
+                                                "type": "collection",
+                                                "label": "Thumb",
                                                 "spec": [
                                                     {
                                                         "name": "$type",
@@ -332,14 +359,14 @@
                                                     },
                                                     {
                                                         "name": "ref",
+                                                        "type": "collection",
+                                                        "label": "Ref",
                                                         "spec": [
                                                             {
                                                                 "name": "$link",
                                                                 "type": "text"
                                                             }
-                                                        ],
-                                                        "type": "collection",
-                                                        "label": "Ref"
+                                                        ]
                                                     },
                                                     {
                                                         "name": "mimeType",
@@ -351,78 +378,70 @@
                                                         "type": "number",
                                                         "label": "Size"
                                                     }
-                                                ],
-                                                "type": "collection",
-                                                "label": "Thumb"
+                                                ]
                                             }
-                                        ],
-                                        "type": "collection",
-                                        "label": "External"
+                                        ]
                                     }
-                                ],
-                                "type": "collection",
-                                "label": "Embed"
+                                ]
                             },
                             {
                                 "name": "facets",
+                                "type": "array",
+                                "label": "Facets",
                                 "spec": {
-                                    "name": "value",
+                                    "type": "collection",
                                     "spec": [
                                         {
                                             "name": "index",
+                                            "label": null,
+                                            "type": "collection",
                                             "spec": [
                                                 {
                                                     "name": "byteStart",
-                                                    "type": "number",
-                                                    "label": null
+                                                    "label": null,
+                                                    "type": "number"
                                                 },
                                                 {
                                                     "name": "byteEnd",
-                                                    "type": "number",
-                                                    "label": null
+                                                    "label": null,
+                                                    "type": "number"
                                                 }
-                                            ],
-                                            "type": "collection",
-                                            "label": null
+                                            ]
                                         },
                                         {
                                             "name": "features",
+                                            "label": null,
+                                            "type": "array",
                                             "spec": {
+                                                "type": "collection",
                                                 "spec": [
                                                     {
                                                         "name": "$type",
-                                                        "type": "text",
-                                                        "label": null
+                                                        "label": null,
+                                                        "type": "text"
                                                     },
                                                     {
                                                         "name": "did",
-                                                        "type": "text",
-                                                        "label": null
+                                                        "label": null,
+                                                        "type": "text"
                                                     }
-                                                ],
-                                                "type": "collection"
-                                            },
-                                            "type": "array",
-                                            "label": null
+                                                ]
+                                            }
                                         }
                                     ],
-                                    "type": "collection"
-                                },
-                                "type": "array",
-                                "label": "Facets"
+                                    "name": "value"
+                                }
                             },
                             {
                                 "name": "langs",
-                                "spec": {
-                                    "name": "value",
-                                    "type": "text"
-                                },
                                 "type": "array",
-                                "label": "Langs"
+                                "label": "Langs",
+                                "spec": {
+                                    "type": "text",
+                                    "name": "value"
+                                }
                             }
-                        ],
-                        "type": "collection",
-                        "label": "Record"
+                        ]
                     }
                 ]
             }

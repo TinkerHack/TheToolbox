@@ -1,8 +1,17 @@
 # Spotify Now Playing to Bluesky for ListigePlaylists
 
-This Make.com blueprint automatically shares your currently playing Spotify track to Bluesky, making it easy to contribute to the [@listigeplaylists.bsky.social](https://bsky.app/profile/listigeplaylists.bsky.social) curated playlist\!
+> [!WARNING]
+> **Project Status: Unmaintained & Bot Retired**
+> 
+> The `@listigeplaylists.bsky.social` Bluesky bot has been **retired**. Spotify track posts mentioning the bot will no longer be added to any playlists.
+> 
+> Consequently, this Make.com integration is **unmaintained**. While you can still use it to post currently playing Spotify tracks to your *own* Bluesky feed, it will not contribute to the community playlist.
+> 
+> Check out the new project at **[playlistpicker.com](https://playlistpicker.com)**!
 
-Perfect for music lovers who want to share their listening habits and contribute to the community playlist without any manual effort.
+This Make.com blueprint automatically shares your currently playing Spotify track to Bluesky. *(Note: The community playlist integration has been retired, but you can still use this template to post to your own Bluesky feed).*
+
+Perfect for music lovers who want to share their listening habits without any manual effort.
 
 ## What This Does
 
@@ -14,7 +23,6 @@ Every time you play a new track on Spotify, this automation will:
       - Song title and artist name
       - Album artwork
       - Link to the track on Spotify
-      - A mention to @listigeplaylists.bsky.social
 
 ## How It Works
 
@@ -165,7 +173,6 @@ If the post appears as expected, you're good to go! If not, please refer to the 
 2.  Confirm activation when prompted
 
 That's it\! Your scenario will now automatically post your currently playing tracks to Bluesky according to your schedule.
-That's it\! Your scenario will now automatically post your currently playing tracks to Bluesky according to your schedule.
 
 ## Troubleshooting
 
@@ -180,7 +187,7 @@ That's it\! Your scenario will now automatically post your currently playing tra
 If you run into any issues:
 
 1.  Check Make.com's help documentation
-2.  Reach out to [@listigeplaylists.bsky.social](https://bsky.app/profile/listigeplaylists.bsky.social) for community support
+2.  Visit **[playlistpicker.com](https://playlistpicker.com)** for the new project
 
 Enjoy sharing your music journey with the Bluesky community\! 🎵
 

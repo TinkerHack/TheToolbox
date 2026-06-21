@@ -13,6 +13,21 @@ This Make.com blueprint automatically shares your currently playing Spotify trac
 
 Perfect for music lovers who want to share their listening habits without any manual effort.
 
+## 🚀 Escape the Algorithmic Echo Chamber: Meet PlaylistPicker!
+
+If you are looking for a far more powerful, automated way to keep your music library fresh and curate playlists without the frustrations of Spotify's repetitive recommendations, check out the new project: **[playlistpicker.com](https://playlistpicker.com)**.
+
+### Why PlaylistPicker?
+
+Spotify's native curation often traps you in a claustrophobic feedback loop, pushing the same songs on repeat and making your home page feel stale. **PlaylistPicker** solves this by acting as your ultimate music scout:
+
+*   **Dynamic Source Monitoring**: Monitor your favorite artists, labels, and curated playlists automatically so you never miss a new release.
+*   **Vibe Protection (Advanced Keyword Filtering)**: Set rules to automatically filter out mood-killers like low-quality live performances or out-of-genre remixes before they ever touch your ears.
+*   **The "Human Firewall" (Interactive Review)**: Algorithms shouldn't make the final call on your music taste. PlaylistPicker gathers the fresh tracks, but leaves the final approval to you in a slick review interface.
+*   **BYOK (Bring Your Own Key) Philosophy**: Take control of your own data and API access. Built specifically for independent music lovers, DJs, and power users who want to build the tools they actually need.
+
+Stop settling for the algorithmic loop. Take control of your discovery, set your own rules, and build your perfect playlists at **[playlistpicker.com](https://playlistpicker.com)**!
+
 ## What This Does
 
 Every time you play a new track on Spotify, this automation will:
